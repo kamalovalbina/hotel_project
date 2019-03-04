@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title>Products</title>
+    <th:block th:include="layout/header"></th:block>
+</head>
+<body>
+<div class="container">
+    <div th:if="${not #lists.isEmpty(employees)}">
+        <h2>All Employees</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>City</th>
+                <th>Year</th>
+                <th>Position</th>
+                <th>Status</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:each="employee : ${employees}">
+                <td th:text="${employee.getId()}">Id</td>
+                <td th:text="${employee.getFirstName()}">First Name</td>
+                <td th:text="${employee.getLastName()}">Last Name</td>
+                <td th:text="${employee.getCity()}">City</td>
+                <td th:text="${employee.getYear()}">Year</td>
+                <td th:text="${employee.getPosition()}">Position</td>
+                <td th:text="${employee.getStatus()}">Status</td>
+                <td><a th:href="${'/employees/edit/' + employee.getId()}" class="btn btn-default">Edit</a></td>
+                <td><a th:href="${'/employees/delete/' + employee.getId()}" class="btn btn-danger">Delete</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
